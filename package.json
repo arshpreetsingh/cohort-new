@@ -1,0 +1,13 @@
+{
+  "name": "trucecheck",
+  "version": "1.0.0",
+  "description": "Weekly Class Registration System",
+  "main": "index.js",
+  "scripts": {
+    "seed": "node scripts/seed.js",
+    "build": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.0.0"
+  }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>truceCheck - Class Registration</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="logo">truceCheck</a>
+      <ul>
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/register.html">Register</a></li>
+        <li><a href="/classes.html">Classes</a></li>
+        <li><a href="/dashboard.html">Users</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Welcome to truceCheck</h1>
+      <p>Your platform for weekly class registrations. Browse available classes and register today!</p>
+      <a href="/register.html" class="btn">Register Now</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="stats" id="statsContainer">
+        <div class="stat-card">
+          <h3 id="totalUsers">-</h3>
+          <p>Registered Users</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="totalClasses">-</h3>
+          <p>Available Classes</p>
+        </div>
+        <div class="stat-card">
+          <h3 id="newThisWeek">-</h3>
+          <p>New This Week</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <div class="cards-grid">
+        <div class="card">
+          <h3>1. Browse Classes</h3>
+          <p>Check out our weekly class schedule and find a class that interests you.</p>
+        </div>
+        <div class="card">
+          <h3>2. Register</h3>
+          <p>Fill in your details to register for the program. It's quick and easy!</p>
+        </div>
+        <div class="card">
+          <h3>3. Attend</h3>
+          <p>Show up and learn from our expert instructors. All classes are free!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 truceCheck. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const [usersData, classesData] = await Promise.all([
+          getUsers(),
+          getClasses(),
+        ]);
+
+        const users = usersData.users || [];
+        const classes = classesData.classes || [];
+
+        document.getElementById('totalUsers').textContent = users.length;
+        document.getElementById('totalClasses').textContent = classes.length;
+
+        const oneWeekAgo = new Date();
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        const newThisWeek = users.filter(u => new Date(u.registered_at) >= oneWeekAgo).length;
+        document.getElementById('newThisWeek').textContent = newThisWeek;
+      } catch (error) {
+        console.error('Failed to load stats:', error);
+        document.getElementById('totalUsers').textContent = '0';
+        document.getElementById('totalClasses').textContent = '0';
+        document.getElementById('newThisWeek').textContent = '0';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users - truceCheck</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/" class="logo">truceCheck</a>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/register.html">Register</a></li>
+        <li><a href="/classes.html">Classes</a></li>
+        <li><a href="/dashboard.html" class="active">Users</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Registered Users</h2>
+      <p style="margin-bottom: 1.5rem; color: #6b7280;">List of all students registered for the program.</p>
+
+      <div id="loading">Loading users...</div>
+      <div id="error" class="alert alert-error" style="display: none;"></div>
+      <div id="usersContainer" class="table-container" style="display: none;"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 truceCheck. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
